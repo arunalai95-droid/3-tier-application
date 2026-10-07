@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>3-Tier Application</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 25px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>3-Tier Application</h1>
+
+    <p>Tier 1 - Frontend</p>
+    <p>Tier 2 - Node.js Backend</p>
+    <p>Tier 3 - AWS RDS MySQL</p>
+
+    <button onclick="checkBackend()">
+        Check Backend
+    </button>
+
+    <div id="result"></div>
+
+    <script>
+        async function checkBackend() {
+
+            const result = document.getElementById("result");
+
+            result.innerHTML = "Connecting to backend...";
+
+            try {
+
+                const response = await fetch(
+                    "http://13.203.213.138:3000/health"
+                );
+
+                const data = await response.json();
+
+                result.innerHTML =
+                    "Backend: " + data.backend +
+                    "<br>Database: " + data.database +
+                    "<br>DB Status: " + data.db_status;
+
+            } catch (error) {
+
+                result.innerHTML =
+                    "Backend connection failed: " + error;
+
+            }
+        }
+    </script>
+
+</body>
+</html>
