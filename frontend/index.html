@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>3-Tier Application</title>
+    <title>3-Tier Application CI/CD</title>
 
     <style>
         body {
@@ -47,7 +47,7 @@
             try {
 
                 const response = await fetch(
-                    "http://13.203.213.138:3000/health"
+                    "http://172.31.3.102:3000/health"
                 );
 
                 const data = await response.json();
@@ -68,3 +68,5 @@
 
 </body>
 </html>
+
+
